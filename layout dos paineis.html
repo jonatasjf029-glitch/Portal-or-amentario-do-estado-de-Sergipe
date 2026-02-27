@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal de Dados - Sergipe</title>
+    <style>
+        body { 
+            margin: 0; 
+            background-color: #003F97; 
+            color: white; 
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* TELA INICIAL */
+        #home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding-top: 50px;
+        }
+
+        .logo-container { text-align: center; margin-bottom: 40px; }
+        
+        .secretaria-texto {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .logos-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logos-row img { height: 90px; }
+
+        /* GRADE DE BOTÕES */
+        .grid-botoes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 40px;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .card-botao {
+            background: white;
+            color: #003F97;
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: bold;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+
+        .card-botao:hover { transform: scale(1.05); background: #f0f0f0; }
+        .card-botao img { width: 50px; margin-bottom: 10px; }
+
+        /* IFRAME E VOLTAR */
+        #painel-exibicao {
+            display: none; 
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+
+        .btn-voltar {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            color: #003F97;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="home">
+        <div class="logo-container">
+            <div class="secretaria-texto"></div>
+            <div class="logos-row">
+                <img src="FIGURAS/SERGIPE LOGO.svg" alt="Governo">
+                <img src="FIGURAS/NOME.svg" alt="Portal">
+            </div>
+            <h1>Portal de Dados Orçamentários</h1>
+        </div>
+
+        <div class="grid-botoes">
+            <button class="card-botao" onclick="abrirPainel('https://app.powerbi.com/view?r=eyJrIjoiMmUwZmY1ODgtZDE3MS00NTFlLWE2NDgtYzFjYzAxODk3NWMxIiwidCI6ImExYTA1MzAxLWJkMzEtNDI3NS05ODk5LTUzZmZiN2M1YjgyZCJ9')">
+                <img src="FIGURAS/RECEITA.png"> PAINEL DE RECEITAS
+            </button>
+            <button class="card-botao" onclick="abrirPainel('https://app.powerbi.com/view?r=eyJrIjoiMjFiZjI0OTktY2RjYy00M2EyLTlmM2ItZWQ2ZmVmMjY3NjNjIiwidCI6ImExYTA1MzAxLWJkMzEtNDI3NS05ODk5LTUzZmZiN2M1YjgyZCJ9')">
+                <img src="FIGURAS/DESPESA.png"> PAINEL DE DESPESAS
+            </button>
+            <button class="card-botao" onclick="abrirPainel('https://app.powerbi.com/view?r=eyJrIjoiZDRiYmJjYWMtZGY4ZC00MDJiLWEyMjUtOWEyMjNhMjdiNDhhIiwidCI6ImExYTA1MzAxLWJkMzEtNDI3NS05ODk5LTUzZmZiN2M1YjgyZCJ9')">
+                <img src="FIGURAS/CRAFI.png"> DECISÕES DO CRAFI
+            </button>
+        </div>
+    </div>
+
+    <iframe id="painel-exibicao"></iframe>
+    <button id="btn-voltar" class="btn-voltar" onclick="voltarHome()">⬅ Retornar à Lista</button>
+
+    <script>
+        function abrirPainel(url) {
+            // Esconde a home inteira
+            document.getElementById('home').style.display = 'none';
+            
+            // Configura o iframe
+            const frame = document.getElementById('painel-exibicao');
+            frame.src = url;
+            frame.style.display = 'block';
+            
+            // Mostra o botão de voltar
+            document.getElementById('btn-voltar').style.display = 'block';
+        }
+
+        function voltarHome() {
+            // Mostra a home novamente
+            document.getElementById('home').style.display = 'flex';
+            
+            // Esconde o iframe e o botão
+            document.getElementById('painel-exibicao').style.display = 'none';
+            document.getElementById('btn-voltar').style.display = 'none';
+            
+            // Limpa o link para não ficar rodando no fundo
+            document.getElementById('painel-exibicao').src = "";
+        }
+    </script>
+</body>
+</html>
