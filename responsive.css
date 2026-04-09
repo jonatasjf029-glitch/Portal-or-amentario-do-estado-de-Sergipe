@@ -90,7 +90,7 @@
         left: 50% ;
         bottom: 5% ; /* Posiciona na parte inferior da tela */
         top: 40%; /* Remove a regra do desktop */
-        transform: translate(-50%, 0) ;
+        transform: translateX(25%) translateY(10%) ; /* Centraliza horizontalmente e ajusta verticalmente */
         width: 90% ;
         max-width: 350px;
         display: flex ;
@@ -104,6 +104,8 @@
         flex-direction: column ;
         gap: 15px ;
         width: 100% ;
+        touch-action: manipulation ; /* Melhora a resposta ao toque */
+        animation: fadeIn 1.2s ease-in-out;
     }
 
     main .card-botao {
