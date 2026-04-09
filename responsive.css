@@ -81,7 +81,7 @@
         width: 100vw;
         z-index: 0;
         clip-path: none; 
-        opacity: 0.20; /* Bem sutil no fundo */
+        opacity: 0.10; /* Bem sutil no fundo */
     }
 
     /* 4. Os Botões (main): Ficam na parte de baixo */
